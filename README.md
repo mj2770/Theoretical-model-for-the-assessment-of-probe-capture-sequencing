@@ -8,13 +8,15 @@
 * Final Version: 2.0
 
 ---
+## Goals:
+Develop a quantitative model to simulate and compare the sequencing results from hybrid probe-capture-based sequencing of human viruses from wastewater samples.
+This quantitative model allows for a theoretical assessment of the performance of probe-capture sequencing using different panels and emphasizes the essential pre-sequencing factors in extracted total nucleic acids, which might be used as generalized indicators for the sequencing success, regardless of selected concentration/extraction methods and varied wastewater conditions.
+
 ## Description: 
 
-This model quantitatively simulates and compares the sequencing results from hybrid probe-capture-based sequencing of human viruses from wastewater samples.
+This model quantitatively simulates and compares the sequencing results from 
 
 The inputs consist of several assumed characteristics of the total RNA after extraction using any selected concentration and extraction method. Under the iterated initial human virus/non-human virus mass ratio, the output results compare the performance of different sequencing panels regarding the relative abundance of total targeted viruses, the relative abundance of one virus included in all panels (SARS-CoV-2), and the required minimal sequencing depth to detect this virus with the highest probability. In the meantime, this model also calculates the detection probability of different viruses under varied defined detection thresholds.
-
-Overall, this quantitative model allows for a theoretical assessment of the performance of probe-capture sequencing using different panels and emphasizes the essential pre-sequencing factors in extracted total nucleic acids, which might be used as generalized indicators for the sequencing success, regardless of selected concentration/extraction methods and varied wastewater conditions.
 
 ---
 ## Simulation of initial conditions in the extracted RNA:

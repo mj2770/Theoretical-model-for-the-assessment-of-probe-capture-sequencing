@@ -26,7 +26,7 @@ Overall, this quantitative model allowes for a theoretical assessment of the per
     * SARS-CoV-2 has an initial gc of 5000 while Mamastrovirus has an initial gc of 50000.
     * The **mass ratio** refers to the total mass ratio of 5000 human RNA viruses to non-viral background in the extracted RNA (**ranging from 1E-8 to 1E-1**).
    
-  ![Characteristics of 5000 virus strains in modeled extracted wastewater samples]
+  ![Characteristics of 5000 virus strains in modeled extracted wastewater samples](https://github.com/mj2770/Theoretical-model-for-the-assessment-of-probe-capture-sequencing/blob/main/Distribution_3-02.png)
 
   * **Assumptions of the probe-capture sequencing**:
 

@@ -46,4 +46,4 @@ Overall, this quantitative model allowes for a theoretical assessment of the per
   * Da to nanogram conversion factor **Da_ng = 1.66 X 1E-15**
 ---
 ## Model structure:
-![Model calculation equations](https://drive.google.com/drive/folders/10LCrwrdqymdrKD3p6yeQQBWMG0dTertD)
+![Model calculation equations](https://github.com/mj2770/Theoretical-model-for-the-assessment-of-probe-capture-sequencing/blob/main/Model%20structure-02.png)

@@ -4,47 +4,54 @@
 
 ---
 * Date: 3/7/24
-* Author: Minxi
+* Author: Minxi 
 * Final Version: 2.0
+* Acknowledgement: Special thanks to Rose Kantor for her contributions to discussing the model and assisting with editing all descriptions..
 
 ---
 ## Goals:
-Develop a quantitative model to simulate and compare the sequencing results from hybrid probe-capture-based sequencing of human viruses from wastewater samples.
-This quantitative model allows for a theoretical assessment of the performance of probe-capture sequencing using different panels and emphasizes the essential pre-sequencing factors in extracted total nucleic acids, which might be used as generalized indicators for the sequencing success, regardless of selected concentration/extraction methods and varied wastewater conditions.
-
-## Description: 
-
-This model quantitatively simulates and compares the sequencing results from 
-
-The inputs consist of several assumed characteristics of the total RNA after extraction using any selected concentration and extraction method. Under the iterated initial human virus/non-human virus mass ratio, the output results compare the performance of different sequencing panels regarding the relative abundance of total targeted viruses, the relative abundance of one virus included in all panels (SARS-CoV-2), and the required minimal sequencing depth to detect this virus with the highest probability. In the meantime, this model also calculates the detection probability of different viruses under varied defined detection thresholds.
+This model quantitatively simulates and compares sequencing results from different probe-capture enrichment panels for a modeled set of human viruses from wastewater samples.
+This model also emphasizes the essential pre-sequencing factors in extracted total nucleic acids, which might be used as generalized indicators for the sequencing success, regardless of selected concentration/extraction methods and varied wastewater conditions.
 
 ---
-## Simulation of initial conditions in the extracted RNA:
+  * **Assumptions of the probe-capture sequencing**:
 
-* A total of 5000 human RNA viruses could be presented in the extracted RNA, including SARS-CoV-2 and Mamastrovirus, the rest background including non-human viruses (bacteriophages + plant viruses), bacteria, archaea, human cells etc..
-* Human viruses were categorized by low, medium, and high abundances, each following a different normal distribution of initial gc and genome length (see below for details of the distribution).
-* SARS-CoV-2 has an initial gc of 5000 while Mamastrovirus has an initial gc of 50000.
-* The **mass ratio** refers to the total mass ratio of 5000 human RNA viruses to non-viral background in the extracted RNA (**ranging from 1E-8 to 1E-1**).
+    * **Enrichment fold** = 100X (based on Rehn et al. 2021).
+      Different panels have the same enrichment fold of targeted viruses.
+      Each virus has the same enrichment fold regardless of its concentration in the sample.
+    * **Depletion fold** = 100X (based on Rehn et al. 2021). 
+    * **Segment length** after tagmentation = 500 bp
+    * **Read length** = 150 bp
+    * There are 5000 unique virus strains in wastewater, which have no sequence overlap or redundancy.
+    * **Mass ratio** of 5000 human RNA viruses to the non-viral background in the extracted RNA ranges from 1E-8 to 1E-1
+    * Genome lengths of human virus strains are normally distributed (mean = 15000 bp, SD = 5000 bp), Absolute abundances (gene copies; “gc”) of human virus strains follow 3 normal distributions:
+         * Low abundance: 20% of all virus strains (mean = 500 gc, SD = 143 gc)
+         * Medium abundance: 60 % of all virus strains (mean = 10000 gc, SD = 2857 gc)
+         * High abundance: 20% of all virus strains (mean = 25000 gc, SD = 7143 gc)
+
+    * **Note**: These values may vary by probe panel and wastewater background sequence composition, which could be changed based on future research results.
+---
+
+## Model Initiation:
+
+* Define 5000 human RNA viruses
+   * Randomly assign the absolute abundance (genome copies) and genome length for 4998 viruses according to assumed distributions
+   * Manually incorporate two viruses for comparison among different panels:
+        * SARS-CoV-2: abundance = 5,000 gc, genome length = 30,000 bp
+        * Mamastrovirus sp.: abundance = 50,000 gc, genome length = 7,000 bp
+* Define the four different sequencing panels:
+   * **Panel A**: Broad panel targeting 2,000 viruses (intended to represent respiratory, enteric, and other viruses). Panel includes SARS-CoV-2, Mamastrovirus sp., and 1,998 additional viruses randomly selected from the pool of 5000 viruses.
+   * **Panel B**: Broad panel targeting 200 viruses (intended to represent respiratory, enteric, and other viruses). Panel includes SARS-CoV-2, Mamastrovirus sp., and 198 additional viruses randomly subset from the Panel A viruses.
+   * **Panel C**: Narrow panel targeting 20 viruses (intended to represent respiratory viruses) including SARS-CoV-2 and 19 additional viruses with medium abundances randomly selected from the pool np.random.poisson(lam=100,60)
+   * **Panel D**: Targeting only SARS-CoV-2 virus.
    
   ![Characteristics of 5000 virus strains in modeled extracted wastewater samples](https://github.com/mj2770/Theoretical-model-for-the-assessment-of-probe-capture-sequencing/blob/main/Distribution_3-02.png)
 
-  ---
-
-  * **Assumptions of the probe-capture sequencing**:
-
-    * Different panels include probes targeting different subsets of the 5000 human viruses (see below for details). Those non-targeted viruses will be regarded as background
-    * **Enrichment fold = 100X** (based on Rehn et al. 2021 paper). Different panels have the same enrichment fold of the targeted viruses included in the panel. Each virus or anything (maybe the false positive sequences) that matches the same probe should have the same enrichment fold regardless of its concentration in the sample.
-    * **Depletion fold = 100X** (based on Rehn et al. 2021 paper). Different panels have the same depletion fold for the non-targeted background. However, it's important to note that this calculation is based on a single wastewater background composition, and different wastewater compositions may result in varying depletion ratios in reality.
-    * After tagmentation, the **segment length = 500 bp**, and the final **reads length = 150 bp**.
-    * The targeted virus strains have no sequence overlap or redundancy.
-
-  * **Notes**: The values in the assumptions could be changed based on future research results, while this calculation model could still be adapted.
 ---
-## Constants:
-
+## Model Structure
+---
+### Constants:
   * Molecular weight of RNA **MRNA = 321.5 Da/bp**
   * Da to nanogram conversion factor **Da_ng = 1.66 X 1E-15**
----
-## Model structure:
-* **defined detection thresholds**: In Part 1 calculation, the defined **coverage breadth = 90%**, and the required **coverage depth = 10X**.
+### Model Calculation:
 ![Model calculation equations](https://github.com/mj2770/Theoretical-model-for-the-assessment-of-probe-capture-sequencing/blob/main/Model%20structure-02.png)

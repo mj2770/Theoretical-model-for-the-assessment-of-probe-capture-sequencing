@@ -6,7 +6,7 @@
 * Date: 3/7/24
 * Author: Minxi 
 * Final Version: 2.0
-* Acknowledgement: Special thanks to Rose Kantor for her contributions to discussing the model and assisting with editing all descriptions..
+* Acknowledgement: Special thanks to Rose Kantor for her contributions to discussing the model and assisting with editing all descriptions.
 
 ---
 ## Goals:

@@ -34,7 +34,7 @@ This model also emphasizes the essential pre-sequencing factors in extracted tot
 
 ## Model Initiation:
 
-* Define 5000 human RNA viruses
+* Define 5000 human RNA viruses:
    * Randomly assign the absolute abundance (genome copies) and genome length for 4998 viruses according to assumed distributions
    * Manually incorporate two viruses for comparison among different panels:
         * SARS-CoV-2: abundance = 5,000 gc, genome length = 30,000 bp
